@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <p>logged in as {{ request.user.username }}</p>
+        <title>Entry Detail</title>
+    </head>
+    <body>
+        <h1>{{ entry.title }}</h1>
+        <p>{{ entry.content }}</p>
+        <p><strong>Created at:</strong> {{ entry.created_at }}</p>
+    </body>
+</html>

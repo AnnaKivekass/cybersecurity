@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Diary</title>
+</head>
+<body>
+    <h1>Welcome to my Diary!</h1>
+    <p>Your personal diary application.</p>
+
+    <h2>New Diary Entry</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Entry</button>
+    </form>
+
+    <h2>Search Entries</h2>
+    <form method="get">
+        <input type="text" name="search" placeholder="Search by title">
+        <button type="submit">Search</button>
+    </form>
+
+    <h2>My Entries</h2>
+
+    {% for entry in entries %}
+        <h3> <a href="{% url 'entry_detail' entry.id %}">{{ entry.title }}</a> </h3>
+        <p>{{ entry.content }}</p>
+        <small>{{ entry.created_at }}</small>
+        <hr>
+    {% empty %}
+        <p>No diary entries yet.</p>
+    {% endfor %}
+</body>
+</html>
